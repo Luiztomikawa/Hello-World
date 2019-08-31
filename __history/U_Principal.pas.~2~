@@ -1,0 +1,47 @@
+unit U_Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.GIFimg, Vcl.ExtCtrls,
+  dxGDIPlusClasses;
+
+type
+  TForm1 = class(TForm)
+    Image1: TImage;
+    procedure FormShow(Sender: TObject);
+    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure FormClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.FormClick(Sender: TObject);
+begin
+(image1.Picture.Graphic as TGIFImage).Animate:= true;
+end;
+
+procedure TForm1.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+(image1.Picture.Graphic as TGIFImage).AnimationSpeed:= 300;
+
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+Image1.Picture.LoadFromFile('anime.gif');
+
+end;
+
+end.
